@@ -1,6 +1,8 @@
-<x-layout title="Editar Série">
+<x-layout title="Editar Série '{{ $series->nome }}' ">
 
-    <form action="{{ route('series.update', $series->id) }}" method="post">
+    <x-series.form :action="route('series.update', $series->id)" :nome="$series->nome" :update="true" />
+
+    {{-- <form action="{{ route('series.update', $series->id) }}" method="post">
         @csrf
         @method('PUT')
 
@@ -10,6 +12,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-    </form>
+    </form> --}}
 
 </x-layout>

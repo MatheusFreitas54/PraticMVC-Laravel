@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeriesFormRequest;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,12 +25,12 @@ class SeriesController extends Controller
         return view('series.create');
     }
 
-    public function store(Request $request)
+    public function store(SeriesFormRequest $request)
     {
         $series = Serie::create($request->all());
         // Session::flash('mensagem.sucesso', "Serie '{$serie->nome}' adicionada com sucesso!");
 
-        return to_route('series.index')->with('mensagem.sucesso', "Serie '{$series->nome}' criada com sucesso!");
+        return to_route('series.index')->with('mensagem.sucesso', "Serie '{$series->nome}' adicionada com sucesso!");
     }
 
     public function destroy(Serie $series)
@@ -45,17 +46,13 @@ class SeriesController extends Controller
 
     public function edit(Serie $series)
     {
+        // dd($series->temporadas());
         // Retornar a view com os dados da série
         return view('series.edit', compact('series'));
     }
 
-    public function update(Request $request, Serie $series)
+    public function update(SeriesFormRequest $request, Serie $series)
     {
-        // Validar e atualizar a série
-        $request->validate([
-            'nome' => 'required|string|max:128'
-        ]);
-
         $series->update($request->all());
 
         return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' atualizada com sucesso!");
