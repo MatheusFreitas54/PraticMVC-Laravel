@@ -12,7 +12,8 @@ class SeriesController extends Controller
 {
     public function index(Request $request)
     {
-        $series = Serie::query()->orderBy('nome')->get();
+        $series = Serie::all();
+        // $series = Serie::query()->orderBy('nome')->get();
         $mensagemSucesso = session('mensagem.sucesso');
         // $request->session()->forget('mensagem.sucesso');
         // dd($series);
