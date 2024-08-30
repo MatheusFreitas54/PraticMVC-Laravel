@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }} - Controle de Séries </title>
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/js/app.js') }}">
+    <!-- Inclua jQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>{{ $title }}</h1>
+    <div class="container pt-4">
+        <h1 class="mb-2">{{ $title }}</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
