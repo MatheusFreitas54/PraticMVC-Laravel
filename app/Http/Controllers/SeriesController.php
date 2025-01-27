@@ -8,12 +8,12 @@ use App\Models\Season;
 use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\SeriesRespository;
+use App\Repositories\SeriesRepository;
 
 class SeriesController extends Controller
 {
 
-    public function __construct(private SeriesRespository $repository)
+    public function __construct(private SeriesRepository $repository)
     {
         $this->repository = $repository;
     }

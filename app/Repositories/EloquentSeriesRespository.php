@@ -7,8 +7,9 @@ use App\Http\Requests\SeriesFormRequest;
 use App\Models\Season;
 use App\Models\Episode;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\SeriesRepository;
 
-class SeriesRespository {
+class EloquentSeriesRespository implements SeriesRepository {
     public function add(SeriesFormRequest $request): Series
     {
         return DB::transaction(function () use ($request) {
