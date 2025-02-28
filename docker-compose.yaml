@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: praticmvc-laravel
+    ports:
+      - "8070:8000"
+    networks:
+      - laravel-network
+    volumes:
+      - ./:/var/www/html
+      - ./database:/var/www/html/database # Garante persistência do SQLite
+    environment:
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/var/www/html/database/database.sqlite
+
+networks:
+  laravel-network:
