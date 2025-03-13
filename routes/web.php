@@ -29,3 +29,7 @@ Route::get('/series/{series}/seasons', [SeasonsController::class, 'index'])->nam
 // Route::post('/series/destroy/{id}', 'destroy')->name('series.destroy');
 
 Route::get('/seasons/{season}/episodes', [EpisodesController::class, 'index'])->name('episodes.index');
+
+Route::post('/seasons/{season}/episodes', function (\Illuminate\Http\Request $request) {
+    dd($request->all());
+});

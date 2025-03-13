@@ -38,4 +38,12 @@ class EloquentSeriesRespository implements SeriesRepository {
             return $serie;
         }, attempts: 2);
     }
+
+    public function findBySeasonId($seasonId)
+    {
+        // Exemplo de como buscar uma série com base na seasonId
+        return Series::whereHas('seasons', function ($query) use ($seasonId) {
+            $query->where('id', $seasonId);
+        })->first();
+    }
 }

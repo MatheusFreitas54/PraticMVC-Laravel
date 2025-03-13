@@ -1,15 +1,20 @@
 <x-layout title="Episódios">
 
-    <ul class="list-group">
-        @foreach ($episodes as $episode)
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Episódio {{ $episode->number }}
+    {{-- {{ dd($episodes) }}; --}}
 
-                <input type="checkbox"></input>
-            </li>
-        @endforeach
-    </ul>
+    <form method="post">
+        @csrf
+        <ul class="list-group">
+            @foreach ($episodes as $episode)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Episódio {{ $episode->number }}
 
-    <button class="btn btn-primary">Salvar</button>
+                    <input type="checkbox" name="episodes[]" value="{{ $episode->id }}"></input>
+                </li>
+            @endforeach
+        </ul>
+
+        <button class="btn btn-primary mt-2 mb-2">Salvar</button>
+    </form>
 
 </x-layout>

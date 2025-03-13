@@ -8,4 +8,5 @@ use App\Http\Requests\SeriesFormRequest;
 interface SeriesRepository {
     public function add(SeriesFormRequest $request): Series;
 
+    public function findBySeasonId(SeriesFormRequest $request);
 }

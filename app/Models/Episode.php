@@ -11,6 +11,8 @@ class Episode extends Model
     public $timestamps = false;
     protected $fillable = ['number'];
 
+    protected $casts = ['watched' => 'boolean'];
+
     public function seasons()
     {
         return $this->belongsTo(Season::class);
