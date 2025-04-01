@@ -1,6 +1,9 @@
-<x-layout title="Episódios">
+<x-layout title="Episódios" :mensagem-sucesso="$mensagemSucesso">
 
     {{-- {{ dd($episodes) }}; --}}
+    <a href="{{ route('seasons.index', $season->series_id) }}" class="btn btn-secondary mb-3">
+        ← Voltar para Temporadas
+    </a>
 
     <form method="post">
         @csrf
@@ -9,7 +12,11 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     Episódio {{ $episode->number }}
 
-                    <input type="checkbox" name="episodes[]" value="{{ $episode->id }}"></input>
+                    <input type="checkbox"
+                            name="episodes[]"
+                            value="{{ $episode->id }}"
+                            @if ($episode->watched) checked @endif
+                    />
                 </li>
             @endforeach
         </ul>
