@@ -9,6 +9,7 @@ use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\SeriesRepository;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
@@ -20,8 +21,8 @@ class SeriesController extends Controller
 
     public function index(Request $request)
     {
+        Auth::check();
         $series = Series::all();
-
         $mensagemSucesso = session('mensagem.sucesso');
         return view('series.index', compact('series'))->with('mensagemSucesso', $mensagemSucesso);
     }
