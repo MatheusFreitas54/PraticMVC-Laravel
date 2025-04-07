@@ -1,24 +1,31 @@
 <x-layout title="Séries" :mensagem-sucesso="$mensagemSucesso">
 
-    <a href="{{ route('series.create') }}" class="btn btn-primary mb-2">Adicionar</a>
+    @auth
+        <a href="{{ route('series.create') }}" class="btn btn-primary mb-2">Adicionar</a>
+    @endauth
+
     <a class="btn btn-primary mb-2" id='modal-test-button' style="display:none">Em Desenvolvimente Editar 2.0</a>
 
     <ul class="list-group">
         @foreach ($series as $serie)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ route('seasons.index', $serie->id) }}">{{ $serie->nome }}</a>
+
+                @auth <a href="{{ route('seasons.index', $serie->id) }}"> @endauth
+                    {{ $serie->nome }}
+                @auth </a> @endauth
 
 
-                <span class="d-flex flex-row justify-content-between">
-                    <a href="{{ route('series.edit', $serie->id) }}" class="btn btn-info btn-sm me-2">✏️</a>
+                @auth
+                    <span class="d-flex flex-row justify-content-between">
+                        <a href="{{ route('series.edit', $serie->id) }}" class="btn btn-info btn-sm me-2">✏️</a>
 
-                    <form action="{{ route('series.destroy', $serie->id) }}" method="post" class="ms-2">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm">🗑️</button>
-                    </form>
-                </span>
-
+                        <form action="{{ route('series.destroy', $serie->id) }}" method="post" class="ms-2">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">🗑️</button>
+                        </form>
+                    </span>
+                @endauth
             </li>
         @endforeach
     </ul>

@@ -11,6 +11,23 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="{{ route ('series.index')}}" class="navbar-brand">Home
+            </a>
+
+            @auth
+                <a href="{{ route('logout') }}">Sair</a>
+            @endauth
+
+            @guest
+                @if (!request()->routeIs('login'))
+                    <a href="{{ route('login') }}">Entrar</a>
+                @endif
+            @endguest
+        </div>
+    </nav>
+
     <div class="container pt-4">
         <h1 class="mb-2">{{ $title }}</h1>
 

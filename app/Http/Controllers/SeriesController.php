@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\SeriesRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Autenticador;
 
 class SeriesController extends Controller
 {
@@ -17,6 +18,7 @@ class SeriesController extends Controller
     public function __construct(private SeriesRepository $repository)
     {
         $this->repository = $repository;
+        $this->middleware(Autenticador::class)->except('index');
     }
 
     public function index(Request $request)
